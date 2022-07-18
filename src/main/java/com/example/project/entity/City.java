@@ -17,15 +17,15 @@ public class City {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    Long id;
+    private Long id;
 
     @Column(name = "city_name", unique = true, nullable = false)
-    String cityName;
+    private String cityName;
 
     @Column(name = "status", nullable = false)
-    SeverityStatus severityStatus;
+    private SeverityStatus severityStatus;
 
     @JoinColumn
     @ManyToOne
-    Area area;
+    private Area area;
 }

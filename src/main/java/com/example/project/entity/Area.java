@@ -17,11 +17,11 @@ public class Area {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    Long id;
+    private Long id;
 
     @Column(name = "area_name", unique = true, nullable = false)
-    String areaName;
+    private String areaName;
 
     @Column(name = "area_code", unique = true, nullable = false)
-    String areaCode;
+    private String areaCode;
 }
