@@ -2,6 +2,7 @@ package com.example.project.entity;
 
 import com.example.project.entity.severity.SeverityStatus;
 import lombok.*;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 

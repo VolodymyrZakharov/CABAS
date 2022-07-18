@@ -1,6 +1,7 @@
 package com.example.project.entity;
 
 import lombok.*;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
@@ -8,6 +9,7 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "person")
+@EntityListeners(AuditingEntityListener.class)
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -17,29 +19,32 @@ public class Person {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    Long id;
+    private Long id;
 
     @Column(name = "first_name", nullable = false)
-    String firstName;
+    private String firstName;
 
     @Column(name = "last_name", nullable = false)
-    String lastName;
+    private String lastName;
 
     @Column(name = "date_of_birth", nullable = false)
-    LocalDate dateOfBirth;
+    private LocalDate dateOfBirth;
 
     @Column(name = "email", unique = true)
-    String email;
+    private String email;
 
     @Column(name = "phone", unique = true)
-    String phone;
+    private String phone;
 
     @JoinColumn
     @ManyToOne
-    City city;
+    private City city;
 
     @Column(name = "guardian_id")
-    Long guardianId;
+    private Long guardianId;
 
+    @LastModifiedDate
+    @Column(name = "updated_on")
+    private LocalDate updatedOn;
 
 }

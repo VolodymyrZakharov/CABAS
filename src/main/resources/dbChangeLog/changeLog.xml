@@ -24,7 +24,7 @@
             <column name="city_name" type="varchar(255)">
                 <constraints nullable="false" unique="true"/>
             </column>
-            <column name="status" type="bigint">
+            <column name="status" type="int">
                 <constraints nullable="false"/>
             </column>
             <column name="area_id" type="bigint">
@@ -44,7 +44,7 @@
             <column name="last_name" type="varchar(255)">
                 <constraints nullable="false"/>
             </column>
-            <column name="date_of_birth" type="varchar (255)">
+            <column name="date_of_birth" type="DATETIME">
                 <constraints nullable="false"/>
             </column>
             <column name="email" type="varchar (255)">
@@ -59,6 +59,7 @@
                              referencedColumnNames="id"
                              foreignKeyName="PERSON_CITY_ID_CITY_ID"/>
             </column>
+            <column name="updated_on" type="DATE"/>
         </createTable>
     </changeSet>
 
