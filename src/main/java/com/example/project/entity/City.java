@@ -1,9 +1,8 @@
 package com.example.project.entity;
 
 import com.example.project.entity.severity.SeverityStatus;
+import com.example.project.entity.severity.SeverityStatusConverter;
 import lombok.*;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-
 import javax.persistence.*;
 
 @Entity
@@ -23,6 +22,7 @@ public class City {
     private String cityName;
 
     @Column(name = "status", nullable = false)
+    @Convert(converter = SeverityStatusConverter.class)
     private SeverityStatus severityStatus;
 
     @JoinColumn

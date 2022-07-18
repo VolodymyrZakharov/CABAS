@@ -3,7 +3,6 @@ package com.example.project.entity.severity;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import lombok.*;
 
-import javax.persistence.Entity;
 import javax.persistence.Table;
 import java.util.Arrays;
 
