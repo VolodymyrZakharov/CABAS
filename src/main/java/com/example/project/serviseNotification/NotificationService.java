@@ -4,5 +4,5 @@ import com.example.project.entity.severity.SeverityStatus;
 
 public interface NotificationService {
 
-    void notify(Long areaCode, SeverityStatus severity);
+    void notify(String areaCode, SeverityStatus severity);
 }

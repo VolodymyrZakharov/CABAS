@@ -1,10 +1,9 @@
 package com.example.project.controller;
 
-import com.example.project.dto.AreaRequestDTO;
+import com.example.project.dto.AreaListRequestDTO;
 import com.example.project.dto.AreaResponseDTO;
 import com.example.project.servise.AreaService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -17,8 +16,8 @@ public class AreaController {
     private AreaService areaService;
 
     @PostMapping("/api/areas")
-    public List<AreaResponseDTO> createAreas(@RequestBody @Valid List<AreaRequestDTO> request) {
-        return areaService.createArea(request);
+    public List<AreaResponseDTO> createAreas(@RequestBody @Valid AreaListRequestDTO request) {
+        return areaService.createArea(request.getAreas());
     }
 
     @GetMapping("/api/areas")

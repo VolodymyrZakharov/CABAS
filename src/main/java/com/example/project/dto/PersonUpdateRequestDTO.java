@@ -16,23 +16,23 @@ import java.time.LocalDate;
 public class PersonUpdateRequestDTO {
 
     @NotBlank(message = "value can not be blanked")
-    @Length(min = 2, max = 50, message = "Person name length should be between 2 and 50 chars")
-    String firstName;
+    @Size(min = 2, max = 50, message = "Person name length should be between 2 and 50 chars")
+    private String firstName;
 
     @NotBlank(message = "value can not be blanked")
-    @Length(min = 2, max = 50, message = "Person last name length should be between 2 and 50 chars")
-    String lastName;
+    @Size(min = 2, max = 50, message = "Person last name length should be between 2 and 50 chars")
+    private String lastName;
 
     @NotNull(message = "value can not be null")
     @Past(message = "incorrect date of birth")
-    LocalDate dateOfBirth;
+    private LocalDate dateOfBirth;
 
     @NotBlank(message = "value can not be blanked")
     @Email(message = "incorrect email")
-    @Length(min = 10, max = 50, message = "Email length should be between 10 and 50 chars")
-    String email;
+    @Size(min = 10, max = 50, message = "Email length should be between 10 and 50 chars")
+    private String email;
 
     @NotBlank(message = "value can not be blanked")
     @Pattern(regexp = "^(\\\\+\\\\d{1,3}( )?)?((\\\\(\\\\d{1,3}\\\\))|\\\\d{1,3})[- .]?\\\\d{3,4}[- .]?\\\\d{4}$", message = "incorrect phone number")
-    String phone;
+    private String phone;
 }

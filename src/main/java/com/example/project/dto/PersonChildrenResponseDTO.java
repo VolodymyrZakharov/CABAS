@@ -12,12 +12,12 @@ import java.time.LocalDate;
 @Data
 @Builder
 public class PersonChildrenResponseDTO {
-    String firstName;
-    String lastName;
-    LocalDate dateOfBirth;
-    String email;
-    String phone;
-    Long cityId;
-    Long areaId;
-    Long guardianId;
+    private String firstName;
+    private String lastName;
+    private LocalDate dateOfBirth;
+    private String email;
+    private String phone;
+    private Long cityId;
+    private Long areaId;
+    private Long guardianId;
 }

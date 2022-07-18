@@ -5,6 +5,7 @@ import lombok.*;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 
 @AllArgsConstructor
@@ -15,10 +16,10 @@ import javax.validation.constraints.NotBlank;
 public class AreaRequestDTO {
 
     @NotBlank
-    @Length (min = 3, max = 50, message = "Area name length should be between 3 and 50 chars")
-    String areaName;
+    @Size(min = 3, max = 50, message = "Area name length should be between 3 and 50 chars")
+   private String areaName;
 
     @NotBlank
-    @Length (min = 2, max = 2, message = "Area code length should be 2 chars")
-    String areaCode;
+    @Size(min = 2, max = 2, message = "Area code length should be 2 chars")
+   private String areaCode;
 }

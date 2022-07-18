@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 @AllArgsConstructor
@@ -17,13 +18,14 @@ import java.util.List;
 public class GuardianChangeRequestDTO {
     @Positive
     @NotNull
-    Long fromGuardian;
+    private Long fromGuardian;
 
     @Positive
     @NotNull
-    Long toGuardian;
+    private Long toGuardian;
 
     @Positive()
     @NotNull
-    List<Long> childrenId;
+    @Size(min = 1, message = "Guardian must have at least on child")
+    private List<Long> childrenId;
 }

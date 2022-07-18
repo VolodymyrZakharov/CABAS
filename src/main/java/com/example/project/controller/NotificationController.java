@@ -15,7 +15,7 @@ public class NotificationController {
     private NotificationService notificationService;
 
     @PostMapping("/api/notifications/notify")
-    public void notifyArea(@RequestParam Long area_code, @RequestParam SeverityStatus severity) {
+    public void notifyArea(@RequestParam String area_code, @RequestParam SeverityStatus severity) {
         notificationService.notify(area_code, severity);
     }
 

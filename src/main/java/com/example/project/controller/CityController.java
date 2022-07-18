@@ -1,9 +1,11 @@
 package com.example.project.controller;
 
+import com.example.project.dto.CityListRequestDTO;
 import com.example.project.dto.CityRequestDTO;
 import com.example.project.dto.CityResponseDTO;
 import com.example.project.servise.CityService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -15,8 +17,8 @@ public class CityController {
     private CityService cityService;
 
     @PostMapping("/api/cities")
-    public List<CityResponseDTO> createCities(@RequestBody @Valid List<CityRequestDTO> request) {
-        return cityService.createCities(request);
+    public List<CityResponseDTO> createCities(@RequestBody @Valid CityListRequestDTO request) {
+        return cityService.createCities(request.getCities());
     }
 
     @GetMapping("/api/cities")

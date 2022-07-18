@@ -14,8 +14,8 @@ import java.util.List;
 @Builder
 public class AreaResponseDTO {
 
-    Long id;
-    String areaName;
-    String areaCode;
-    List<Long> cityIds;
+    private Long id;
+    private String areaName;
+    private String areaCode;
+    private List<Long> cityIds;
 }

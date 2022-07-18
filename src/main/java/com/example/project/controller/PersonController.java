@@ -3,9 +3,11 @@ package com.example.project.controller;
 import com.example.project.dto.*;
 import com.example.project.servise.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotEmpty;
 import java.util.List;
 
 @RestController
@@ -15,8 +17,8 @@ public class PersonController {
     private PersonService personService;
 
     @PostMapping("/api/persons")
-    public List<PersonResponseDTO> createPersons(@RequestBody @Valid List<PersonRequestDTO> request) {
-        return personService.createPersons(request);
+    public List<PersonResponseDTO> createPersons(@RequestBody @Valid  PersonListRequestDTO request) {
+        return personService.createPersons(request.getPersons());
     }
 
     @PutMapping("/api/persons/{id}")

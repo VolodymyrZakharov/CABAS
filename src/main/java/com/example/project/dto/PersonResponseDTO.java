@@ -14,14 +14,14 @@ import java.util.List;
 @Builder
 public class PersonResponseDTO {
 
-    Long id;
-    String firstName;
-    String lastName;
-    LocalDate dateOfBirth;
-    String email;
-    String phone;
-    Long cityId;
-    Long areaId;
-    Long guardianId;
-    List<PersonChildrenResponseDTO> children;
+    private Long id;
+    private String firstName;
+    private String lastName;
+    private LocalDate dateOfBirth;
+    private String email;
+    private String phone;
+    private Long cityId;
+    private Long areaId;
+    private Long guardianId;
+    private List<PersonChildrenResponseDTO> children;
 }

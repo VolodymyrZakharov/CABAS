@@ -11,8 +11,8 @@ import lombok.NoArgsConstructor;
 @Data
 @Builder
 public class CityResponseDTO {
-    Long cityId;
-    String name;
-    Long areaId;
-    SeverityStatus severityStatus;
+    private Long cityId;
+    private String name;
+    private Long areaId;
+    private SeverityStatus severityStatus;
 }

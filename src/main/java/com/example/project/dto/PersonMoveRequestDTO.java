@@ -16,13 +16,13 @@ public class PersonMoveRequestDTO {
 
     @Positive
     @NotNull
-    Long personId;
+    private Long personId;
 
     @Positive
     @NotNull
-    Long fromCityId;
+    private Long fromCityId;
 
     @Positive
     @NotNull
-    Long toCityId;
+    private Long toCityId;
 }
