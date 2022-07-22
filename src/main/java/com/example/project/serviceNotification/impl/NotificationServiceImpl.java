@@ -1,4 +1,4 @@
-package com.example.project.serviseNotification.impl;
+package com.example.project.serviceNotification.impl;
 
 import com.example.project.entity.Area;
 import com.example.project.entity.City;
@@ -9,7 +9,7 @@ import com.example.project.repository.AreaRepository;
 import com.example.project.repository.CityRepository;
 import com.example.project.repository.NotificationRepository;
 import com.example.project.repository.PersonRepository;
-import com.example.project.serviseNotification.NotificationService;
+import com.example.project.serviceNotification.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;

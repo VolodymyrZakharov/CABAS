@@ -1,7 +1,7 @@
 package com.example.project.controller;
 
 import com.example.project.entity.severity.SeverityStatus;
-import com.example.project.serviseNotification.NotificationService;
+import com.example.project.serviceNotification.NotificationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;

@@ -1,4 +1,4 @@
-package com.example.project.servise.impl;
+package com.example.project.service.impl;
 
 import com.example.project.dto.CityRequestDTO;
 import com.example.project.dto.CityResponseDTO;
@@ -7,7 +7,7 @@ import com.example.project.entity.City;
 import com.example.project.entity.severity.SeverityStatus;
 import com.example.project.repository.AreaRepository;
 import com.example.project.repository.CityRepository;
-import com.example.project.servise.CityService;
+import com.example.project.service.CityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -50,7 +50,11 @@ public class CityServiceImpl implements CityService {
 
     @Override
     public List<CityResponseDTO> getAllCities() {
-        return cityRepository.findAll().stream().map(this::cityToDTO).collect(Collectors.toList());
+        try {
+            return cityRepository.findAll().stream().map(this::cityToDTO).collect(Collectors.toList());
+        } catch (NullPointerException ex) {
+            return null;
+        }
     }
 
     @Override

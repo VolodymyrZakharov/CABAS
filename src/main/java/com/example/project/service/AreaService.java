@@ -1,4 +1,4 @@
-package com.example.project.servise;
+package com.example.project.service;
 
 import com.example.project.dto.AreaRequestDTO;
 import com.example.project.dto.AreaResponseDTO;
@@ -9,7 +9,7 @@ public interface AreaService {
 
     List<AreaResponseDTO> createArea(List<AreaRequestDTO> request);
 
-    List<AreaResponseDTO> getAllAreas();
+   AreaResponseDTO getAreaById(Long id);
 
     AreaResponseDTO getAreaByName(String name);
 }

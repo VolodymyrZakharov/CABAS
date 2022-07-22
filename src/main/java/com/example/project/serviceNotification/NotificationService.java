@@ -1,4 +1,4 @@
-package com.example.project.serviseNotification;
+package com.example.project.serviceNotification;
 
 import com.example.project.entity.severity.SeverityStatus;
 

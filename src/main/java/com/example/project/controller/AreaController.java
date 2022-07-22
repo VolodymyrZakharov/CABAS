@@ -2,7 +2,7 @@ package com.example.project.controller;
 
 import com.example.project.dto.AreaListRequestDTO;
 import com.example.project.dto.AreaResponseDTO;
-import com.example.project.servise.AreaService;
+import com.example.project.service.AreaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,9 +20,9 @@ public class AreaController {
         return areaService.createArea(request.getAreas());
     }
 
-    @GetMapping("/api/areas")
-    public List<AreaResponseDTO> getAllAreas() {
-        return areaService.getAllAreas();
+    @GetMapping("/api/areas/{id}")
+    public AreaResponseDTO getAreaById(@PathVariable Long id) {
+        return areaService.getAreaById(id);
     }
 
     @GetMapping(value = "/api/areas", params = "name")

@@ -1,10 +1,13 @@
-package com.example.project.servise.impl;
+package com.example.project.service.impl;
 
 import com.example.project.dto.AreaRequestDTO;
 import com.example.project.dto.AreaResponseDTO;
 import com.example.project.entity.Area;
+import com.example.project.entity.City;
 import com.example.project.repository.AreaRepository;
-import com.example.project.servise.AreaService;
+import com.example.project.repository.CityRepository;
+import com.example.project.service.AreaService;
+import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -20,6 +23,9 @@ public class AreaServiceImpl implements AreaService {
 
     @Autowired
     private AreaRepository areaRepository;
+
+    @Autowired
+    private CityRepository cityRepository;
 
     @Override
     public List<AreaResponseDTO> createArea(List<AreaRequestDTO> request) {
@@ -37,9 +43,11 @@ public class AreaServiceImpl implements AreaService {
     }
 
     @Override
-    public List<AreaResponseDTO> getAllAreas() {
-        return areaRepository.findAll().stream()
-                .map(this::areaToDTO).collect(Collectors.toList());
+    public AreaResponseDTO getAreaById(Long id) {
+        Area area = areaRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
+                String.format("Area with id [%s] not found", id)));
+
+        return areaToDTO(area);
     }
 
     @Override
@@ -50,14 +58,19 @@ public class AreaServiceImpl implements AreaService {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND,
                     String.format("Area with name [%s] does not exist", name));
         }
-
     }
 
     private AreaResponseDTO areaToDTO(Area area) {
+        var cityId = cityRepository.findAllByArea(area)
+                .stream()
+                .map(City::getId)
+                .collect(Collectors.toList());
+
         return AreaResponseDTO.builder()
                 .id(area.getId())
                 .areaName(area.getAreaName())
                 .areaCode(area.getAreaCode())
+                .cityIds(cityId)
                 .build();
     }
 }

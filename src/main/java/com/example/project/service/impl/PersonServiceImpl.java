@@ -1,11 +1,11 @@
-package com.example.project.servise.impl;
+package com.example.project.service.impl;
 
 import com.example.project.dto.*;
 import com.example.project.entity.City;
 import com.example.project.entity.Person;
 import com.example.project.repository.CityRepository;
 import com.example.project.repository.PersonRepository;
-import com.example.project.servise.PersonService;
+import com.example.project.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -82,7 +82,7 @@ public class PersonServiceImpl implements PersonService {
 
         if (guardian.getGuardianId() != null) {
             throw new ResponseStatusException(HttpStatus.CONFLICT,
-                    String.format("Guardian with id [%s] can not be a guardian", guardianId));
+                    String.format("Person with id [%s] can not be a guardian", guardianId));
         }
 
         person.setGuardianId(guardianId);
