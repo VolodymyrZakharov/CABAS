@@ -102,7 +102,7 @@ public class PersonServiceImpl implements PersonService {
         Person guardianTo = personRepository
                 .findById(request.getToGuardian())
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
-                        String.format("Guardian with id [%s] does not exist", request.getFromGuardian()))
+                        String.format("Guardian with id [%s] does not exist", request.getToGuardian()))
                 );
 
         if (guardianTo.getGuardianId() != null) {
@@ -110,29 +110,19 @@ public class PersonServiceImpl implements PersonService {
                     String.format("Person with id [%s] can not be a guardian", request.getToGuardian()));
         }
 
-        List<Long> childrenId = request.getChildrenId();
-        List<Long> fromGuardianAllChild = personRepository.findAllByGuardianId(request.getFromGuardian())
-                .stream()
-                .map(Person::getId)
-                .collect(Collectors.toList());
+        for (Long x : request.getChildrenId()) {
+            Person children = personRepository.findById(x)
+                    .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
+                            String.format("Children with id [%s] does not exist", x)));
 
-        for (Long x : childrenId) {
-            if (!fromGuardianAllChild.contains(x)) {
-                throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY,
-                        String.format("Person with id [%s] is not a guardian for person with id [%s]",
+            if (children.getGuardianId() != guardianFrom.getId()){
+                throw new ResponseStatusException(HttpStatus.CONFLICT,
+                        String.format("Person with id [%s] is not a guardian for children with id [%s]",
                                 request.getFromGuardian(), x));
             }
+            children.setGuardianId(request.getToGuardian());
+            personRepository.save(children);
         }
-
-        childrenId.stream().forEach(y -> {
-            Person child = personRepository
-                    .findById(y)
-                    .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
-                            String.format("Person with id [%s] does not exist", y))
-                    );
-            child.setGuardianId(request.getToGuardian());
-            personRepository.save(child);
-        });
         return personToDTO(guardianFrom);
     }
 
@@ -177,13 +167,13 @@ public class PersonServiceImpl implements PersonService {
                 );
 
         if (person.getGuardianId() != null) {
-            throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY,
+            throw new ResponseStatusException(HttpStatus.CONFLICT,
                     String.format("Person with id [%s] can not move without guardian", request.getPersonId())
             );
         }
 
-        if (!person.getCity().getId().equals(request.getFromCityId())){
-            throw new ResponseStatusException(HttpStatus.UNPROCESSABLE_ENTITY,
+        if (!person.getCity().getId().equals(request.getFromCityId())) {
+            throw new ResponseStatusException(HttpStatus.CONFLICT,
                     String.format("Person with id [%s] do not live in the city with id [%s]", request.getPersonId(), request.getFromCityId())
             );
         }
